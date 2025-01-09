@@ -19,6 +19,9 @@ importers:
       lucide-react:
         specifier: ^0.469.0
         version: 0.469.0(react@18.3.1)
+      non.geist:
+        specifier: ^1.0.4
+        version: 1.0.4
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -3203,6 +3206,12 @@ packages:
     resolution:
       {
         integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==,
+      }
+
+  non.geist@1.0.4:
+    resolution:
+      {
+        integrity: sha512-2spmLTgz5ipZrFGLiI1YkiHb8Yit0yFySPvWzal3wCwCFilMFQQ/Jwwz4lcEatwIKUpOeMYwyFwP8MJ8EVKqGA==,
       }
 
   normalize-path@3.0.0:
@@ -6417,6 +6426,8 @@ snapshots:
   natural-compare@1.4.0: {}
 
   node-releases@2.0.19: {}
+
+  non.geist@1.0.4: {}
 
   normalize-path@3.0.0: {}
 
