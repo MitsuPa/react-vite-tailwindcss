@@ -4,6 +4,7 @@ import * as React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { MainErrorFallback } from '@/components/errors/main';
+import { Toaster } from '@/components/ui/sonner';
 import { Spinner } from '@/components/ui/spinner';
 import { queryConfig } from '@/lib/react-query';
 
@@ -31,6 +32,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         <QueryClientProvider client={queryClient}>
           {import.meta.env.DEV && <ReactQueryDevtools />}
           {children}
+          <Toaster richColors />
         </QueryClientProvider>
       </ErrorBoundary>
     </React.Suspense>

@@ -8,6 +8,7 @@ import {
   ErrorBoundary as AppRootErrorBoundary,
 } from '@/app/routes/app/root';
 import { paths } from '@/config/paths';
+import { ProtectedRoute } from '@/lib/auth';
 
 const convert = (queryClient: QueryClient) => (m: any) => {
   const { clientLoader, clientAction, default: Component, ...rest } = m;
@@ -22,8 +23,20 @@ const convert = (queryClient: QueryClient) => (m: any) => {
 export const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
     {
+      path: paths.auth.register.path,
+      lazy: () => import('./routes/auth/register').then(convert(queryClient)),
+    },
+    {
+      path: paths.auth.login.path,
+      lazy: () => import('./routes/auth/login').then(convert(queryClient)),
+    },
+    {
       path: paths.app.root.path,
-      element: <AppRoot />,
+      element: (
+        <ProtectedRoute>
+          <AppRoot />
+        </ProtectedRoute>
+      ),
       ErrorBoundary: AppRootErrorBoundary,
       children: [
         {
