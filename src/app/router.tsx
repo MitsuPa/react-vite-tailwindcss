@@ -24,11 +24,12 @@ export const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
     {
       path: paths.auth.register.path,
-      lazy: () => import('./routes/auth/register').then(convert(queryClient)),
+      lazy: () =>
+        import('@/app/routes/auth/register').then(convert(queryClient)),
     },
     {
       path: paths.auth.login.path,
-      lazy: () => import('./routes/auth/login').then(convert(queryClient)),
+      lazy: () => import('@/app/routes/auth/login').then(convert(queryClient)),
     },
     {
       path: paths.app.root.path,
@@ -42,13 +43,13 @@ export const createAppRouter = (queryClient: QueryClient) =>
         {
           path: paths.app.dashboard.path,
           lazy: () =>
-            import('./routes/app/dashboard').then(convert(queryClient)),
+            import('@/app/routes/app/dashboard').then(convert(queryClient)),
         },
       ],
     },
     {
       path: '*',
-      lazy: () => import('./routes/not-found').then(convert(queryClient)),
+      lazy: () => import('@/app/routes/not-found').then(convert(queryClient)),
     },
   ]);
 
