@@ -30,6 +30,9 @@ const authMiddleware: Middleware = {
       } else {
         toast.error(response.statusText);
       }
+      if (response.status === 401) {
+        localStorage.removeItem('accessToken');
+      }
     }
     return response;
   },

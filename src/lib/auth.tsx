@@ -2,6 +2,7 @@ import { configureAuth } from 'react-query-auth';
 import { Navigate, useLocation } from 'react-router';
 import { z } from 'zod';
 
+import { Spinner } from '@/components/ui/spinner';
 import { paths } from '@/config/paths';
 import client from '@/lib/api-client';
 
@@ -39,7 +40,7 @@ const authConfig = {
   loginFn: async (data: UserCredentialInput) => {
     const response = await login(data);
     if (response.data?.token) {
-      sessionStorage.setItem('accessToken', response.data.token);
+      localStorage.setItem('accessToken', response.data.token);
     }
     return await getUser();
   },
@@ -56,6 +57,13 @@ export const { useUser, useLogin, useLogout, useRegister, AuthLoader } =
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
   const location = useLocation();
+  if (user.isLoading) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <Spinner size="xl" />
+      </div>
+    );
+  }
 
   if (!user.data) {
     return (
